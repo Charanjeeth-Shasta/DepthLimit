@@ -7,6 +7,8 @@ import Setup from './pages/Setup';
 import Interview from './pages/Interview';
 import DetailedReport from './pages/DetailedReport';
 import SummaryReport from './pages/SummaryReport';
+import Settings from './pages/Settings';
+import Profile from './pages/Profile';
 
 function ProtectedRoute({ children }) {
   const { user, loading } = useAuth();
@@ -22,6 +24,8 @@ function AppRoutes() {
       <Route path="/signup" element={<Signup />} />
       <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
       <Route path="/setup" element={<ProtectedRoute><Setup /></ProtectedRoute>} />
+      <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+      <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
       <Route path="/interview/:sessionId" element={<ProtectedRoute><Interview /></ProtectedRoute>} />
       <Route path="/report/:sessionId/detailed" element={<ProtectedRoute><DetailedReport /></ProtectedRoute>} />
       <Route path="/report/:sessionId/summary" element={<ProtectedRoute><SummaryReport /></ProtectedRoute>} />

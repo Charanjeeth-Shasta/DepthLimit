@@ -8,15 +8,30 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const stored = localStorage.getItem('user');
-    if (stored) setUser(JSON.parse(stored));
-    setLoading(false);
+    // Check if user is already authenticated via httpOnly cookie
+    api.get('/api/auth/profile')
+      .then(res => {
+        setUser(res.data.user);
+        setLoading(false);
+      })
+      .catch(() => {
+        setLoading(false);
+      });
   }, []);
+
+  const refreshUserProfile = async () => {
+    try {
+      const res = await api.get('/api/auth/profile');
+      setUser(res.data.user);
+      return res.data.user;
+    } catch (error) {
+      console.error('Failed to refresh user profile:', error);
+    }
+  };
 
   const login = async (email, password) => {
     const { data } = await api.post('/api/auth/login', { email, password });
-    localStorage.setItem('token', data.token);
-    localStorage.setItem('user', JSON.stringify(data.user));
+    // Token is now in httpOnly cookie set by server, no need to store locally
     setUser(data.user);
     return data;
   };
@@ -27,13 +42,13 @@ export function AuthProvider({ children }) {
   };
 
   const logout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
+    // Call logout endpoint to clear httpOnly cookie
+    api.post('/api/auth/logout').catch(() => {});
     setUser(null);
   };
 
   return (
-    <AuthContext.Provider value={{ user, loading, login, register, logout }}>
+    <AuthContext.Provider value={{ user, loading, login, register, logout, refreshUserProfile }}>
       {children}
     </AuthContext.Provider>
   );

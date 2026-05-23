@@ -113,6 +113,106 @@ const getUserProfile = async (req, res) => {
   });
 };
 
+// CHANGE PASSWORD
+const changePassword = async (req, res) => {
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    const { currentPassword, newPassword } = req.body;
+    const userId = req.user.id;
+
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    const isMatch = await bcrypt.compare(currentPassword, user.password);
+    if (!isMatch) {
+      return res.status(400).json({ message: "Current password is incorrect" });
+    }
+
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    user.password = hashedPassword;
+    await user.save();
+
+    res.status(200).json({ message: "Password changed successfully" });
+  } catch (error) {
+    if (process.env.NODE_ENV !== "production") {
+      console.error("Change Password Error:", error);
+    }
+    res.status(500).json({ message: "Server Error" });
+  }
+};
+
+// DELETE ACCOUNT
+const deleteAccount = async (req, res) => {
+  try {
+    const userId = req.user.id;
+
+    const user = await User.findByIdAndDelete(userId);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.clearCookie("token");
+    res.status(200).json({ message: "Account deleted successfully" });
+  } catch (error) {
+    if (process.env.NODE_ENV !== "production") {
+      console.error("Delete Account Error:", error);
+    }
+    res.status(500).json({ message: "Server Error" });
+  }
+};
+
+// UPDATE PROFILE
+const updateProfile = async (req, res) => {
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    const { name, email } = req.body;
+    const userId = req.user.id;
+
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // Check if new email is already taken (if email is being changed)
+    if (email && email !== user.email) {
+      const existingUser = await User.findOne({ email: email.toLowerCase() });
+      if (existingUser) {
+        return res.status(400).json({ message: "Email already in use" });
+      }
+    }
+
+    if (name) user.name = name.trim();
+    if (email) user.email = email.toLowerCase();
+    
+    await user.save();
+
+    res.status(200).json({
+      message: "Profile updated successfully",
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+      },
+    });
+  } catch (error) {
+    if (process.env.NODE_ENV !== "production") {
+      console.error("Update Profile Error:", error);
+    }
+    res.status(500).json({ message: "Server Error" });
+  }
+};
+
 // Export with validation middleware
 const validateRegister = [
   body("name")
@@ -146,10 +246,43 @@ const validateLogin = [
     .withMessage("Password is required")
 ];
 
+const validateChangePassword = [
+  body("currentPassword")
+    .notEmpty()
+    .withMessage("Current password is required"),
+  body("newPassword")
+    .isLength({ min: 8 })
+    .withMessage("Password must be at least 8 characters")
+    .matches(/[A-Z]/)
+    .withMessage("Password must contain uppercase letter")
+    .matches(/[0-9]/)
+    .withMessage("Password must contain a number")
+    .matches(/[@$!%*?&]/)
+    .withMessage("Password must contain special character (@$!%*?&)")
+];
+
+const validateUpdateProfile = [
+  body("name")
+    .optional()
+    .trim()
+    .isLength({ min: 2, max: 100 })
+    .withMessage("Name must be 2-100 characters"),
+  body("email")
+    .optional()
+    .isEmail()
+    .withMessage("Valid email is required")
+    .normalizeEmail(),
+];
+
 module.exports = {
   registerUser,
   loginUser,
   getUserProfile,
+  changePassword,
+  deleteAccount,
+  updateProfile,
   validateRegister,
-  validateLogin
+  validateLogin,
+  validateChangePassword,
+  validateUpdateProfile
 };

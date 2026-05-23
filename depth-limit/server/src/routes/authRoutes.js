@@ -4,8 +4,13 @@ const {
   registerUser,
   loginUser,
   getUserProfile,
+  changePassword,
+  deleteAccount,
+  updateProfile,
   validateRegister,
-  validateLogin
+  validateLogin,
+  validateChangePassword,
+  validateUpdateProfile
 } = require("../controllers/authController");
 
 const { protect } = require("../middleware/authMiddleware");
@@ -30,5 +35,14 @@ router.post("/logout", (req, res) => {
 
 // Protected Profile Route
 router.get("/profile", protect, getUserProfile);
+
+// Update Profile Route
+router.put("/profile", protect, validateUpdateProfile, updateProfile);
+
+// Change Password Route
+router.post("/change-password", protect, validateChangePassword, changePassword);
+
+// Delete Account Route
+router.delete("/delete-account", protect, deleteAccount);
 
 module.exports = router;

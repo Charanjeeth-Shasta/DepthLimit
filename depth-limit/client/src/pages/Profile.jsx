@@ -2,18 +2,48 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ArrowLeft, Camera } from 'lucide-react'
 import Navbar from '../components/Navbar'
-import { mockUser, mockStats } from '../services/mockData'
+import { useAuth } from '../context/AuthContext'
+import api from '../services/api'
 
 export default function Profile() {
   const navigate = useNavigate()
-  const [name, setName] = useState(mockUser.name)
-  const [email, setEmail] = useState(mockUser.email)
+  const { user, refreshUserProfile } = useAuth()
+  const [name, setName] = useState(user?.name || '')
+  const [email, setEmail] = useState(user?.email || '')
   const [saved, setSaved] = useState(false)
+  const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
 
-  const handleSave = () => {
-    setSaved(true)
-    setTimeout(() => setSaved(false), 2000)
+  const handleSave = async () => {
+    try {
+      setError('')
+      setLoading(true)
+      
+      if (!name.trim()) {
+        setError('Name cannot be empty')
+        return
+      }
+      
+      if (name.length < 2 || name.length > 100) {
+        setError('Name must be 2-100 characters')
+        return
+      }
+
+      await api.put('/api/auth/profile', { name, email })
+      
+      // Refresh user data from context
+      await refreshUserProfile()
+      
+      setSaved(true)
+      setTimeout(() => setSaved(false), 2000)
+    } catch (err) {
+      setError(err.response?.data?.message || 'Failed to save changes')
+    } finally {
+      setLoading(false)
+    }
   }
+
+  const userInitial = user?.name?.[0]?.toUpperCase() || 'U'
 
   return (
     <div className="page-bg min-h-screen">
@@ -30,7 +60,7 @@ export default function Profile() {
           <div className="flex items-center gap-6 mb-8">
             <div className="relative">
               <div className="w-20 h-20 rounded-full bg-accent-teal flex items-center justify-center text-white font-syne font-bold text-3xl">
-                {mockUser.initial}
+                {userInitial}
               </div>
               <button className="absolute bottom-0 right-0 w-7 h-7 bg-bg-surface border border-bg-border rounded-full flex items-center justify-center hover:bg-bg-elevated transition-colors">
                 <Camera size={12} className="text-text-secondary" />
@@ -55,27 +85,12 @@ export default function Profile() {
             </div>
           </div>
 
-          <button onClick={handleSave}
-            className={`px-6 py-2.5 rounded-lg font-dm font-medium text-sm transition-colors ${saved ? 'bg-success text-white' : 'bg-accent-teal hover:bg-accent-teal-bright text-white'}`}>
-            {saved ? '✓ Saved' : 'Save Changes'}
-          </button>
-        </div>
+          {error && <p className="text-danger text-sm mb-4">{error}</p>}
 
-        <div className="bg-bg-surface border border-bg-border rounded-xl p-8 fade-up-3">
-          <h2 className="font-syne font-semibold text-xl text-text-primary mb-6">Your Stats</h2>
-          <div className="grid grid-cols-2 gap-4">
-            {[
-              { label: 'Total Sessions', value: mockStats.totalSessions, color: 'text-accent-teal' },
-              { label: 'Average Score', value: mockStats.avgScore, color: 'text-accent-blue' },
-              { label: 'Best Score', value: mockStats.bestScore, color: 'text-success' },
-              { label: 'Topics Mastered', value: mockStats.topicsMastered, color: 'text-warning' },
-            ].map(({ label, value, color }) => (
-              <div key={label} className="bg-bg-elevated rounded-xl p-5">
-                <div className={`font-mono font-bold text-3xl ${color} mb-1`}>{value}</div>
-                <div className="text-text-secondary text-sm font-dm">{label}</div>
-              </div>
-            ))}
-          </div>
+          <button onClick={handleSave} disabled={loading}
+            className={`px-6 py-2.5 rounded-lg font-dm font-medium text-sm transition-colors disabled:opacity-50 ${saved ? 'bg-success text-white' : 'bg-accent-teal hover:bg-accent-teal-bright text-white'}`}>
+            {saved ? '✓ Saved' : loading ? 'Saving...' : 'Save Changes'}
+          </button>
         </div>
       </main>
     </div>

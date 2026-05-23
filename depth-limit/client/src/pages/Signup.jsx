@@ -1,9 +1,73 @@
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
+import { useState } from 'react'
 
 export default function Signup() {
   const navigate = useNavigate()
   const { register } = useAuth()
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
+  const [error, setError] = useState('')
+
+  // Password validation checks
+// Real-time validation object
+const passwordChecks = {
+  length: password.length >= 8,
+  uppercase: /[A-Z]/.test(password),
+  number: /[0-9]/.test(password),
+  special: /[@$!%*?&]/.test(password),
+}
+
+// Show conditions as user types
+{password && (
+  <div className="space-y-2 text-xs">
+    <div className={`${passwordChecks.length ? 'text-success' : 'text-danger'}`}>
+      {passwordChecks.length ? '✓' : '✗'} At least 8 characters
+    </div>
+    {/* ... other checks ... */}
+  </div>
+)}
+
+  const isPasswordValid = Object.values(passwordChecks).every(Boolean)
+  const isPasswordMatch = password && password === confirmPassword
+
+  const sanitizeName = (input) => {
+    return input.replace(/<[^>]*>/g, '').trim()
+  }
+
+  const handleSignup = async () => {
+    setError('')
+
+    if (!name.trim()) {
+      setError('Name is required')
+      return
+    }
+
+    if (!email) {
+      setError('Email is required')
+      return
+    }
+
+    if (!isPasswordValid) {
+      setError('Password does not meet requirements')
+      return
+    }
+
+    if (!isPasswordMatch) {
+      setError('Passwords do not match')
+      return
+    }
+
+    try {
+      const sanitizedName = sanitizeName(name)
+      await register(sanitizedName, email, password)
+      navigate('/login')
+    } catch (err) {
+      setError('Registration failed. Try again.')
+    }
+  }
 
   return (
     <div className="min-h-screen flex font-dm">
@@ -42,30 +106,70 @@ export default function Signup() {
           <p className="text-text-secondary text-sm mb-8">Start your interview prep journey</p>
 
           <div className="space-y-4 mb-6">
-            {[
-              { type: 'text', placeholder: 'Full name' },
-              { type: 'email', placeholder: 'Email address' },
-              { type: 'password', placeholder: 'Password' },
-              { type: 'password', placeholder: 'Confirm password' },
-            ].map(({ type, placeholder }) => (
-              <input key={placeholder} type={type} placeholder={placeholder}
-                className="w-full px-4 py-3 rounded-lg font-dm text-sm text-text-primary placeholder-text-tertiary border border-bg-border focus:border-accent-teal transition-colors bg-bg-primary" />
-            ))}
+            <input 
+              type="text" 
+              placeholder="Full name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="w-full px-4 py-3 rounded-lg font-dm text-sm text-text-primary placeholder-text-tertiary border border-bg-border focus:border-accent-teal transition-colors bg-bg-primary"
+            />
+            
+            <input 
+              type="email" 
+              placeholder="Email address"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full px-4 py-3 rounded-lg font-dm text-sm text-text-primary placeholder-text-tertiary border border-bg-border focus:border-accent-teal transition-colors bg-bg-primary"
+            />
+            
+            <div>
+              <input 
+                type="password" 
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full px-4 py-3 rounded-lg font-dm text-sm text-text-primary placeholder-text-tertiary border border-bg-border focus:border-accent-teal transition-colors bg-bg-primary"
+              />
+              
+              {/* Password Requirements */}
+              {password && (
+                <div className="mt-3 space-y-2 text-xs">
+                  <div className={`flex items-center gap-2 ${passwordChecks.length ? 'text-success' : 'text-danger'}`}>
+                    <span className="text-lg">{passwordChecks.length ? '✓' : '✗'}</span>
+                    <span>At least 8 characters</span>
+                  </div>
+                  <div className={`flex items-center gap-2 ${passwordChecks.uppercase ? 'text-success' : 'text-danger'}`}>
+                    <span className="text-lg">{passwordChecks.uppercase ? '✓' : '✗'}</span>
+                    <span>At least one uppercase letter (A-Z)</span>
+                  </div>
+                  <div className={`flex items-center gap-2 ${passwordChecks.number ? 'text-success' : 'text-danger'}`}>
+                    <span className="text-lg">{passwordChecks.number ? '✓' : '✗'}</span>
+                    <span>At least one number (0-9)</span>
+                  </div>
+                  <div className={`flex items-center gap-2 ${passwordChecks.special ? 'text-success' : 'text-danger'}`}>
+                    <span className="text-lg">{passwordChecks.special ? '✓' : '✗'}</span>
+                    <span>At least one special character (@$!%*?&)</span>
+                  </div>
+                </div>
+              )}
+            </div>
+            
+            <input 
+              type="password" 
+              placeholder="Confirm password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              className="w-full px-4 py-3 rounded-lg font-dm text-sm text-text-primary placeholder-text-tertiary border border-bg-border focus:border-accent-teal transition-colors bg-bg-primary"
+            />
           </div>
 
-          <button onClick={async () => {
-            try {
-              const inputs = document.querySelectorAll('input');
-              const name = inputs[0].value;
-              const email = inputs[1].value;
-              const password = inputs[2].value;
-              await register(name, email, password);
-              navigate('/login');
-            } catch {
-              alert('Registration failed. Try again.');
-            }
-          }}
-            className="w-full py-3 rounded-lg bg-accent-teal hover:bg-accent-teal-bright text-white font-dm font-medium text-sm transition-colors mb-4">
+          {error && <p className="text-danger text-sm mb-4">{error}</p>}
+
+          <button 
+            onClick={handleSignup}
+            disabled={!isPasswordValid || !isPasswordMatch}
+            className="w-full py-3 rounded-lg bg-accent-teal hover:bg-accent-teal-bright text-white font-dm font-medium text-sm transition-colors mb-4 disabled:opacity-50 disabled:cursor-not-allowed"
+          >
             Create account
           </button>
 
