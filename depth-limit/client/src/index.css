@@ -1,0 +1,102 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-primary: #F8F9FB;
+  --bg-surface: #FFFFFF;
+  --bg-elevated: #EEF0F5;
+  --bg-border: #DDE1EA;
+  --accent-teal: #0D9488;
+  --accent-teal-bright: #14B8A6;
+  --accent-blue: #2563EB;
+  --text-primary: #0F172A;
+  --text-secondary: #475569;
+  --text-tertiary: #94A3B8;
+  --success: #059669;
+  --warning: #D97706;
+  --danger: #DC2626;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'DM Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.page-bg {
+  background-color: var(--bg-primary);
+  background-image:
+    linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  min-height: 100vh;
+  position: relative;
+}
+
+.glow-bg {
+  position: fixed;
+  top: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(13,148,136,0.08) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.card-glow {
+  border: 1px solid var(--accent-teal) !important;
+  box-shadow: 0 0 0 1px var(--accent-teal), 0 0 24px rgba(13,148,136,0.15);
+}
+
+.fade-up-1 { animation: fadeUp 400ms ease-out 0ms forwards; opacity: 0; }
+.fade-up-2 { animation: fadeUp 400ms ease-out 100ms forwards; opacity: 0; }
+.fade-up-3 { animation: fadeUp 400ms ease-out 200ms forwards; opacity: 0; }
+.fade-up-4 { animation: fadeUp 400ms ease-out 300ms forwards; opacity: 0; }
+.fade-up-5 { animation: fadeUp 400ms ease-out 400ms forwards; opacity: 0; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes skeletonPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.skeleton {
+  animation: skeletonPulse 1.5s ease-in-out infinite;
+  background: var(--bg-elevated);
+  border-radius: 8px;
+}
+
+.progress-bar-fill {
+  animation: fillBar 800ms ease-out forwards;
+}
+
+@keyframes fillBar {
+  from { width: 0%; }
+  to { width: var(--target-width, 100%); }
+}
+
+textarea:focus, input:focus { outline: none; }
+
+.teal-glow-btn {
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(13,148,136,0.3); }
+  50% { box-shadow: 0 0 0 8px rgba(13,148,136,0); }
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-surface); }
+::-webkit-scrollbar-thumb { background: var(--bg-border); border-radius: 3px; }

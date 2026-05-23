@@ -1,0 +1,753 @@
+{
+  "Python": {
+
+    "easy": [
+      "What is Python?",
+      "Difference between list and tuple?",
+      "What is indentation in Python?",
+      "What are Python data types?",
+      "What is a variable in Python?",
+      "What are loops in Python?",
+      "What is the difference between while and for loop?",
+      "What is a function in Python?"
+    ],
+
+    "medium": [
+      "Explain OOP concepts in Python.",
+      "What are decorators in Python?",
+      "What is exception handling?",
+      "Explain list comprehensions.",
+      "What is inheritance in Python?",
+      "What is polymorphism?",
+      "What is encapsulation?",
+      "Difference between deep copy and shallow copy?",
+      "What are lambda functions?",
+      "Explain *args and **kwargs.",
+      "What are Python modules?",
+      "Explain file handling in Python."
+    ],
+
+    "hard": [
+      "Explain multithreading vs multiprocessing.",
+      "What are generators in Python?",
+      "Explain GIL in Python.",
+      "How does memory management work in Python?",
+      "What are Python iterators?",
+      "Explain metaclasses in Python.",
+      "How does garbage collection work in Python?",
+      "Explain monkey patching.",
+      "What is method resolution order (MRO)?",
+      "Explain Python context managers.",
+      "How does async programming work in Python?",
+      "Difference between threading and async?",
+      "What are coroutines?",
+      "Explain Python bytecode.",
+      "How does Python interpreter execute code?"
+    ]
+  },
+
+  "React": {
+
+    "easy": [
+      "What is React?",
+      "What is JSX?",
+      "What are components in React?",
+      "What is state in React?",
+      "What are props?",
+      "Difference between functional and class components?",
+      "What is ReactDOM?",
+      "What is event handling in React?"
+    ],
+
+    "medium": [
+      "What are React Hooks?",
+      "Explain Virtual DOM.",
+      "What is useEffect?",
+      "Difference between props and state?",
+      "What is conditional rendering?",
+      "What is useState hook?",
+      "What is component lifecycle?",
+      "Explain controlled components.",
+      "What is lifting state up?",
+      "What is prop drilling?",
+      "Explain React routing.",
+      "How do APIs work in React?"
+    ],
+
+    "hard": [
+      "Explain React reconciliation.",
+      "How does React rendering work internally?",
+      "Explain React lifecycle methods.",
+      "How does state management work in large applications?",
+      "What is React Fiber architecture?",
+      "How does memoization work in React?",
+      "What are higher-order components?",
+      "Explain lazy loading in React.",
+      "What is code splitting?",
+      "Explain custom hooks.",
+      "Difference between useMemo and useCallback?",
+      "How does React optimize performance?",
+      "Explain hydration in React.",
+      "What is server-side rendering?",
+      "Explain React context API deeply."
+    ]
+  },
+
+  "MongoDB": {
+
+    "easy": [
+      "What is MongoDB?",
+      "Difference between SQL and MongoDB?",
+      "What is a collection in MongoDB?",
+      "What is a document database?",
+      "What is BSON?",
+      "What are MongoDB documents?",
+      "What is NoSQL?",
+      "What are CRUD operations?"
+    ],
+
+    "medium": [
+      "Explain aggregation pipeline.",
+      "What is indexing in MongoDB?",
+      "Explain CRUD operations.",
+      "What are MongoDB schemas?",
+      "Difference between find and aggregate?",
+      "What is data modeling in MongoDB?",
+      "What are embedded documents?",
+      "Explain MongoDB relationships.",
+      "How does querying work in MongoDB?",
+      "What are MongoDB operators?",
+      "Explain sorting and filtering.",
+      "How does pagination work in MongoDB?"
+    ],
+
+    "hard": [
+      "Explain sharding in MongoDB.",
+      "How does replication work in MongoDB?",
+      "Explain MongoDB transactions.",
+      "How does MongoDB scaling work?",
+      "What is replica set election?",
+      "How does MongoDB indexing internally work?",
+      "Explain write concern.",
+      "What is read preference?",
+      "Explain database partitioning.",
+      "How does MongoDB handle concurrency?",
+      "What are capped collections?",
+      "Explain TTL indexes.",
+      "How does MongoDB caching work?",
+      "Explain distributed databases.",
+      "How do you optimize MongoDB performance?"
+    ]
+  },
+
+  "Node.js": {
+
+    "easy": [
+      "What is Node.js?",
+      "What is npm?",
+      "What is Express.js?",
+      "What is middleware?",
+      "What is package.json?",
+      "What is REST API?",
+      "What is routing in Express?",
+      "What is JSON?"
+    ],
+
+    "medium": [
+      "Explain JWT authentication.",
+      "What is middleware in Express?",
+      "What is asynchronous programming?",
+      "Explain callbacks in Node.js.",
+      "Difference between synchronous and asynchronous code?",
+      "What is CORS?",
+      "Explain API integration.",
+      "What is request-response cycle?",
+      "Explain environment variables.",
+      "What is error handling in Express?",
+      "What are HTTP methods?",
+      "How does Express routing work?"
+    ],
+
+    "hard": [
+      "Explain event loop in Node.js.",
+      "How does async handling work internally?",
+      "What are streams in Node.js?",
+      "Explain clustering in Node.js.",
+      "How does Node.js handle concurrency?",
+      "What is non-blocking I/O?",
+      "Explain libuv architecture.",
+      "Difference between process and thread?",
+      "What are worker threads?",
+      "How does garbage collection work in V8?",
+      "Explain Node.js architecture.",
+      "What is backpressure in streams?",
+      "How do microtasks work in Node.js?",
+      "Explain Node.js memory leaks.",
+      "How does Node.js scale in production?"
+    ]
+  },
+
+  "Machine Learning": {
+
+    "easy": [
+      "What is Machine Learning?",
+      "Difference between AI and ML?",
+      "What is supervised learning?",
+      "What is unsupervised learning?",
+      "What is a dataset?",
+      "What is training data?",
+      "What is testing data?",
+      "What is prediction in ML?"
+    ],
+
+    "medium": [
+      "What is overfitting?",
+      "Explain supervised learning.",
+      "Difference between classification and regression?",
+      "What is feature engineering?",
+      "What is data preprocessing?",
+      "What is model training?",
+      "Explain validation datasets.",
+      "What are evaluation metrics?",
+      "Difference between precision and recall?",
+      "What is cross validation?",
+      "Explain bias in ML.",
+      "What is underfitting?"
+    ],
+
+    "hard": [
+      "Explain bias-variance tradeoff.",
+      "How does gradient descent work?",
+      "What are neural networks?",
+      "Explain backpropagation.",
+      "What is regularization?",
+      "Difference between batch and stochastic gradient descent?",
+      "How do transformers work?",
+      "What is dimensionality reduction?",
+      "Explain PCA.",
+      "What is hyperparameter tuning?",
+      "How do ensemble models work?",
+      "What is feature selection?",
+      "Explain deep learning optimization.",
+      "How does model deployment work?",
+      "Explain ML model scalability."
+    ]
+  },
+
+  "JavaScript": {
+
+    "easy": [
+      "What is JavaScript?",
+      "What are variables?",
+      "What are data types in JavaScript?",
+      "What is a function?",
+      "What are objects in JavaScript?",
+      "What are arrays?",
+      "What is the DOM?",
+      "What is event handling?"
+    ],
+
+    "medium": [
+      "What is closure in JavaScript?",
+      "Explain prototypal inheritance.",
+      "What is async/await?",
+      "What are promises?",
+      "What is callback hell?",
+      "Explain this keyword.",
+      "What is hoisting?",
+      "Difference between var, let, and const?",
+      "What are arrow functions?",
+      "What is destructuring?",
+      "What is spread operator?",
+      "How do classes work in JavaScript?"
+    ],
+
+    "hard": [
+      "Explain event loop in JavaScript.",
+      "How does garbage collection work?",
+      "What is the execution context?",
+      "Explain scope chain.",
+      "What are generators?",
+      "How do decorators work?",
+      "Explain proxy and reflect.",
+      "What is memoization?",
+      "How does setTimeout work internally?",
+      "What is currying?",
+      "Explain higher-order functions.",
+      "How does prototype chain work?",
+      "What is WeakMap and WeakSet?",
+      "Explain symbol in JavaScript.",
+      "How does Promise.all work?"
+    ]
+  },
+
+  "Express": {
+
+    "easy": [
+      "What is Express.js?",
+      "What is middleware?",
+      "What is routing?",
+      "What is a request handler?",
+      "What is app.listen?",
+      "What are HTTP methods?",
+      "What is request body?",
+      "What is response object?"
+    ],
+
+    "medium": [
+      "What is CORS middleware?",
+      "How do you handle errors in Express?",
+      "What is next() function?",
+      "How do you parse JSON?",
+      "What is static file serving?",
+      "How do you create REST APIs?",
+      "What is body-parser?",
+      "How do you set up routes?",
+      "What is request validation?",
+      "How do sessions work in Express?",
+      "What is cookie handling?",
+      "Explain authentication middleware?"
+    ],
+
+    "hard": [
+      "How does middleware chain work?",
+      "What is custom middleware?",
+      "Explain Express error handling deeply.",
+      "How do you scale Express apps?",
+      "What is clustering in Express?",
+      "How do you implement caching?",
+      "Explain Express middleware ordering.",
+      "What is helmet for security?",
+      "How do you handle file uploads?",
+      "What is stream processing in Express?",
+      "How do you implement WebSockets?",
+      "Explain Express performance optimization.",
+      "What is connection pooling?",
+      "How do you implement rate limiting?",
+      "Explain Express production deployment?"
+    ]
+  },
+
+  "SQL": {
+
+    "easy": [
+      "What is SQL?",
+      "What is a database?",
+      "What are tables?",
+      "What are columns and rows?",
+      "What is a primary key?",
+      "What is SELECT statement?",
+      "What is WHERE clause?",
+      "What are data types in SQL?"
+    ],
+
+    "medium": [
+      "What are JOINs in SQL?",
+      "Explain INNER JOIN.",
+      "What is LEFT JOIN?",
+      "What is GROUP BY?",
+      "What are aggregate functions?",
+      "Explain ORDER BY.",
+      "What is DISTINCT?",
+      "What are constraints in SQL?",
+      "Explain foreign key.",
+      "What is normalization?",
+      "What are indexes?",
+      "How do transactions work?"
+    ],
+
+    "hard": [
+      "Explain query optimization.",
+      "What is query execution plan?",
+      "How does indexing improve performance?",
+      "Explain ACID properties.",
+      "What is denormalization?",
+      "How do you handle deadlocks?",
+      "What is partitioning?",
+      "Explain sharding in databases.",
+      "What is replication?",
+      "How do you optimize slow queries?",
+      "What is caching in databases?",
+      "Explain stored procedures.",
+      "What are triggers?",
+      "How does database locking work?",
+      "Explain database scalability?"
+    ]
+  },
+
+  "Java": {
+
+    "easy": [
+      "What is Java?",
+      "What is the JVM?",
+      "What are variables?",
+      "What is a class?",
+      "What is an object?",
+      "What are methods?",
+      "What is inheritance?",
+      "What is encapsulation?"
+    ],
+
+    "medium": [
+      "What is polymorphism?",
+      "Explain method overloading.",
+      "What is method overriding?",
+      "What are interfaces?",
+      "What is abstract class?",
+      "Explain exception handling.",
+      "What are collections?",
+      "What is HashMap?",
+      "What are generics?",
+      "Explain static keyword.",
+      "What is the final keyword?",
+      "How do packages work?"
+    ],
+
+    "hard": [
+      "Explain garbage collection.",
+      "What is memory management in Java?",
+      "Explain multithreading.",
+      "What is thread synchronization?",
+      "Explain lambda expressions.",
+      "What are streams?",
+      "Explain Optional class.",
+      "What is reflection?",
+      "Explain annotations.",
+      "What is serialization?",
+      "Explain concurrent collections.",
+      "What is volatile keyword?",
+      "Explain thread pooling.",
+      "What is atomic operations?",
+      "Explain Java module system?"
+    ]
+  },
+
+  "HTML": {
+
+    "easy": [
+      "What is HTML?",
+      "What are HTML tags?",
+      "What is semantic HTML?",
+      "What are attributes?",
+      "What is a heading tag?",
+      "What are paragraphs?",
+      "What are lists in HTML?",
+      "What are forms?"
+    ],
+
+    "medium": [
+      "What is meta tag?",
+      "Explain DOCTYPE.",
+      "What is accessibility?",
+      "What are data attributes?",
+      "What is HTML5?",
+      "What are canvas and SVG?",
+      "What is video tag?",
+      "Explain form validation.",
+      "What are iframes?",
+      "What is localStorage?",
+      "Explain web workers.",
+      "What are custom elements?"
+    ],
+
+    "hard": [
+      "Explain Shadow DOM.",
+      "What are Web Components?",
+      "How does browser rendering work?",
+      "Explain critical rendering path.",
+      "What is layout thrashing?",
+      "How does CSS specificity work?",
+      "Explain paint and composite.",
+      "What is reflow and repaint?",
+      "How do you optimize rendering?",
+      "What is progressive enhancement?",
+      "Explain responsive design.",
+      "What are media queries?",
+      "How does lazy loading work?",
+      "Explain preloading and prefetching.",
+      "What is HTTP/2 Server Push?"
+    ]
+  },
+
+  "CSS": {
+
+    "easy": [
+      "What is CSS?",
+      "What are selectors?",
+      "What are classes and IDs?",
+      "What are properties?",
+      "What is the box model?",
+      "What is margin and padding?",
+      "What is border?",
+      "What is color?"
+    ],
+
+    "medium": [
+      "What is flexbox?",
+      "Explain CSS Grid.",
+      "What is positioning?",
+      "Explain display property.",
+      "What are pseudo-classes?",
+      "What are pseudo-elements?",
+      "What is specificity?",
+      "What is inheritance?",
+      "Explain cascading.",
+      "What are media queries?",
+      "What is animation?",
+      "Explain transitions."
+    ],
+
+    "hard": [
+      "What is CSS architecture?",
+      "Explain BEM methodology.",
+      "What is CSS-in-JS?",
+      "Explain critical CSS.",
+      "What is CSS containment?",
+      "Explain subgrid in CSS Grid.",
+      "What are custom properties?",
+      "Explain calc() function.",
+      "What is will-change?",
+      "Explain GPU acceleration.",
+      "What is stacking context?",
+      "Explain CSS performance.",
+      "What are CSS preprocessors?",
+      "Explain accessibility in CSS.",
+      "What is responsive typography?"
+    ]
+  },
+
+  "C": {
+
+    "easy": [
+      "What is C?",
+      "What are variables?",
+      "What are data types?",
+      "What are operators?",
+      "What is a loop?",
+      "What is conditional statement?",
+      "What is a function?",
+      "What is a pointer?"
+    ],
+
+    "medium": [
+      "What are arrays?",
+      "What are strings in C?",
+      "What are structures?",
+      "What are unions?",
+      "Explain memory management.",
+      "What is malloc and free?",
+      "What are function pointers?",
+      "Explain parameter passing.",
+      "What are preprocessor directives?",
+      "Explain file handling.",
+      "What are macros?",
+      "Explain typedef."
+    ],
+
+    "hard": [
+      "Explain pointer arithmetic.",
+      "What is dynamic allocation?",
+      "Explain memory layout.",
+      "What is stack and heap?",
+      "Explain recursion.",
+      "What are linked lists?",
+      "Explain sorting algorithms.",
+      "What is bitwise operations?",
+      "Explain searching algorithms.",
+      "What are data structures?",
+      "Explain buffer overflow.",
+      "What is void pointer?",
+      "Explain segmentation fault.",
+      "What is NULL pointer?",
+      "Explain scope and lifetime?"
+    ]
+  },
+
+  "C++": {
+
+    "easy": [
+      "What is C++?",
+      "What are classes?",
+      "What are objects?",
+      "What is inheritance?",
+      "What is polymorphism?",
+      "What is encapsulation?",
+      "What are constructors?",
+      "What are destructors?"
+    ],
+
+    "medium": [
+      "Explain virtual functions.",
+      "What are templates?",
+      "What is exception handling?",
+      "What are smart pointers?",
+      "Explain operator overloading.",
+      "What is STL?",
+      "Explain vectors and lists.",
+      "What is map in STL?",
+      "Explain file I/O.",
+      "What is namespace?",
+      "Explain const correctness.",
+      "What is RAII?"
+    ],
+
+    "hard": [
+      "Explain move semantics.",
+      "What is perfect forwarding?",
+      "Explain variadic templates.",
+      "What is CRTP?",
+      "Explain expression templates.",
+      "What is SFINAE?",
+      "Explain metaprogramming.",
+      "What is type traits?",
+      "Explain memory management.",
+      "What is undefined behavior?",
+      "Explain ABI compatibility.",
+      "What is inline assembly?",
+      "Explain optimization levels.",
+      "What is multithreading in C++?",
+      "Explain parallel programming?"
+    ]
+  },
+
+  "Flask": {
+
+    "easy": [
+      "What is Flask?",
+      "What is a route?",
+      "What is a view function?",
+      "What is request object?",
+      "What is response object?",
+      "What are HTTP methods?",
+      "What is URL building?",
+      "What are URL parameters?"
+    ],
+
+    "medium": [
+      "What is request context?",
+      "Explain blueprints in Flask.",
+      "What is Flask extensions?",
+      "How do you handle errors?",
+      "What is Flask-SQLAlchemy?",
+      "Explain request/response cycle.",
+      "What are decorators in Flask?",
+      "How do you serve static files?",
+      "What is template inheritance?",
+      "Explain Jinja2 templating.",
+      "What is session handling?",
+      "How do cookies work?"
+    ],
+
+    "hard": [
+      "Explain Flask application factory.",
+      "What is Flask CLI?",
+      "How do you scale Flask apps?",
+      "Explain WSGI.",
+      "What is Werkzeug?",
+      "Explain Flask middleware.",
+      "What is before_request hook?",
+      "Explain signal handling.",
+      "What is Flask testing?",
+      "How do you deploy Flask?",
+      "Explain Flask security.",
+      "What is CSRF protection?",
+      "Explain Flask caching.",
+      "What is Celery integration?",
+      "Explain Flask best practices?"
+    ]
+  },
+
+  "Git": {
+
+    "easy": [
+      "What is Git?",
+      "What is a repository?",
+      "What is commit?",
+      "What is a branch?",
+      "What is merge?",
+      "What is pull?",
+      "What is push?",
+      "What is clone?"
+    ],
+
+    "medium": [
+      "Explain staging area.",
+      "What is rebase?",
+      "What is cherry-pick?",
+      "What is stash?",
+      "Explain merge conflict.",
+      "What is reset?",
+      "Explain revert.",
+      "What is tag?",
+      "What is remote repository?",
+      "Explain fetch vs pull.",
+      "What are Git hooks?",
+      "What is gitignore?"
+    ],
+
+    "hard": [
+      "Explain Git internals.",
+      "What is reflog?",
+      "Explain bisect.",
+      "What is submodule?",
+      "Explain worktree.",
+      "What is shallow clone?",
+      "Explain packed references.",
+      "What is garbage collection in Git?",
+      "Explain object database.",
+      "What is staging?",
+      "Explain branching strategies.",
+      "What is squashing commits?",
+      "Explain Git performance.",
+      "What is filter-branch?",
+      "Explain Git workflow optimization?"
+    ]
+  },
+
+  "Deep Learning": {
+
+    "easy": [
+      "What is Deep Learning?",
+      "What are neural networks?",
+      "What is activation function?",
+      "What is a neuron?",
+      "What is forward propagation?",
+      "What is backpropagation?",
+      "What are layers?",
+      "What is loss function?"
+    ],
+
+    "medium": [
+      "What are CNNs?",
+      "What are RNNs?",
+      "What is LSTM?",
+      "What is GRU?",
+      "What are transformers?",
+      "What is attention mechanism?",
+      "Explain convolutional layers.",
+      "What is pooling?",
+      "Explain dropout.",
+      "What is batch normalization?",
+      "What are optimizers?",
+      "Explain learning rate?"
+    ],
+
+    "hard": [
+      "Explain gradient descent variants.",
+      "What is gradient flow?",
+      "Explain vanishing gradient problem.",
+      "What is exploding gradient?",
+      "Explain residual networks.",
+      "What is architectural search?",
+      "Explain generative models.",
+      "What is adversarial training?",
+      "Explain attention variants.",
+      "What is transfer learning?",
+      "Explain fine-tuning.",
+      "What is knowledge distillation?",
+      "Explain pruning and quantization.",
+      "What is federated learning?",
+      "Explain neural architecture optimization?"
+    ]
+  }
+}
