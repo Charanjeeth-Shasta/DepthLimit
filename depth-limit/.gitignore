@@ -3,4 +3,17 @@ client/.env
 client/.env.production
 server/.env
 server/.env.production
+
+# Node modules - exclude all instances
 node_modules/
+*/node_modules/
+**/node_modules/
+
+# Dependency locks
+package-lock.json
+yarn.lock
+
+# OS files
+.DS_Store
+.env.local
+.env.*.local

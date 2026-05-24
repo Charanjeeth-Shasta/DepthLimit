@@ -18,10 +18,11 @@ export default function Dashboard() {
   const { user } = useAuth()
   const [resumes, setResumes] = useState([])
   const [sessions, setSessions] = useState([])
+  const [loadError, setLoadError] = useState(false)
 
   useEffect(() => {
-    api.get('/api/resume/list').then(r => setResumes(r.data.resumes || [])).catch(() => {});
-    api.get('/api/interview/sessions').then(r => setSessions(r.data.sessions || [])).catch(() => {});
+    api.get('/api/resume/list').then(r => setResumes(r.data.resumes || [])).catch(() => setLoadError(true));
+    api.get('/api/interview/sessions').then(r => setSessions(r.data.sessions || [])).catch(() => setLoadError(true));
   }, []);
 
   return (
@@ -29,6 +30,11 @@ export default function Dashboard() {
       <div className="glow-bg" />
       <Navbar />
       <main className="relative z-10 max-w-6xl mx-auto px-6 py-8">
+        {loadError && (
+          <div className="mb-6 p-4 bg-danger/10 border border-danger/30 rounded-lg text-danger text-sm font-dm">
+            Failed to load data. Please refresh the page or try again later.
+          </div>
+        )}
         <div className="flex items-center justify-between mb-10 fade-up-1">
           <div>
             <h1 className="font-syne font-bold text-3xl text-text-primary mb-1">

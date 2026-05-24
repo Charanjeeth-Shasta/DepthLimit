@@ -45,6 +45,7 @@ const interviewSessionSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
+      index: true,
     },
 
     jobTitle: {
@@ -86,6 +87,9 @@ const interviewSessionSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
+
+// Compound index for user and creation date sorting
+interviewSessionSchema.index({ user: 1, createdAt: -1 });
 
 module.exports = mongoose.model(
   "InterviewSession",

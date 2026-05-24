@@ -38,6 +38,13 @@ app.use(express.json());
 // Cookie Parser Middleware (for httpOnly cookies)
 app.use(cookieParser());
 
+// Request Timeout Middleware (30 seconds)
+app.use((req, res, next) => {
+  req.setTimeout(30000);
+  res.setTimeout(30000);
+  next();
+});
+
 // Rate Limiting on Auth Routes
 const authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
@@ -45,6 +52,15 @@ const authLimiter = rateLimit({
   message: { error: "Too many login attempts, please try again later" },
   standardHeaders: true,
   legacyHeaders: false,
+});
+
+// Health Check Endpoint (for load balancers and orchestration)
+app.get("/health", (req, res) => {
+  res.status(200).json({ 
+    status: "ok", 
+    uptime: process.uptime(), 
+    timestamp: new Date().toISOString() 
+  });
 });
 
 // API Routes
@@ -61,11 +77,46 @@ app.get("/", (req, res) => {
   });
 });
 
+// Global Error Handler (MUST BE LAST)
+app.use((err, req, res, next) => {
+  if (process.env.NODE_ENV !== "production") {
+    console.error(err.stack);
+  }
+  res.status(err.status || 500).json({ 
+    message: process.env.NODE_ENV === "production" ? "Internal server error" : err.message 
+  });
+});
+
 // Start Server
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   if (process.env.NODE_ENV !== "production") {
     console.log(`Server running on port ${PORT}`);
   }
+});
+
+// Graceful Shutdown Handlers
+process.on("SIGTERM", () => {
+  if (process.env.NODE_ENV !== "production") {
+    console.log("SIGTERM received, closing gracefully...");
+  }
+  server.close(() => {
+    if (process.env.NODE_ENV !== "production") {
+      console.log("Server closed");
+    }
+    process.exit(0);
+  });
+});
+
+process.on("SIGINT", () => {
+  if (process.env.NODE_ENV !== "production") {
+    console.log("SIGINT received, closing gracefully...");
+  }
+  server.close(() => {
+    if (process.env.NODE_ENV !== "production") {
+      console.log("Server closed");
+    }
+    process.exit(0);
+  });
 });

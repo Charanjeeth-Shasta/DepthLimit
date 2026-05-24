@@ -6,6 +6,7 @@ const resumeSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
+      index: true,
     },
 
     originalName: {
@@ -32,5 +33,8 @@ const resumeSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
+
+// Compound index for user and creation date sorting
+resumeSchema.index({ user: 1, createdAt: -1 });
 
 module.exports = mongoose.model("Resume", resumeSchema);

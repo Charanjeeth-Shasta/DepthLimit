@@ -1,5 +1,12 @@
 const multer = require("multer");
 const path = require("path");
+const fs = require("fs");
+
+// Auto-create uploads directory if it doesn't exist
+const uploadDir = path.resolve(__dirname, "../../uploads/resumes");
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir, { recursive: true });
+}
 
 // Storage Configuration
 const storage = multer.diskStorage({

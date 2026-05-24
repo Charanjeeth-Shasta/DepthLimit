@@ -22,6 +22,9 @@ const generateInterview = async (req, res) => {
       questionCount
     } = req.body;
 
+    // Validate and bound questionCount (prevent DOS)
+    const validatedQuestionCount = Math.max(1, Math.min(50, parseInt(questionCount, 10) || 5));
+
     // Map user difficulty levels to NLP service levels
     const difficultyMap = {
       'Fresher': 'easy',
