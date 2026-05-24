@@ -93,7 +93,7 @@ Runs on `http://localhost:5173`
 
 ```bash
 cd nltk-service
-python app.py
+uvicorn app:app --reload
 ```
 
 Runs on `http://localhost:8000`
@@ -243,4 +243,3 @@ NODE_ENV=production node src/app.js
 ## License
 
 MIT
-
