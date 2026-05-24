@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-import fitz
+from pypdf import PdfReader
 import spacy
 import random
 import json
@@ -86,14 +86,10 @@ class ResumeRequest(BaseModel):
 
 # Extract Text From PDF
 def extract_text_from_pdf(file_path):
-
     text = ""
-
-    pdf_document = fitz.open(file_path)
-
-    for page in pdf_document:
-        text += page.get_text()
-
+    reader = PdfReader(file_path)
+    for page in reader.pages:
+        text += page.extract_text() or ""
     return text
 
 
