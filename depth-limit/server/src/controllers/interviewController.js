@@ -127,6 +127,7 @@ const generateInterview = async (req, res) => {
     }
 
     const nlpPayload = {
+      resume_text: resumeText,
       file_path: absoluteResumePath,
       difficulty: nlpDifficulty,
       mode,
