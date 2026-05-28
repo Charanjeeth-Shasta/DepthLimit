@@ -233,6 +233,9 @@ def home():
 # Generate Interview Questions
 @app.post("/generate-questions")
 def generate_interview(request: ResumeRequest):
+    import sys
+    print(f"DEBUG: resume_text length = {len(request.resume_text) if request.resume_text else 0}", file=sys.stderr)
+    print(f"DEBUG: file_path = {request.file_path}", file=sys.stderr)
 
     # Extract Resume Text
     if request.resume_text:
