@@ -128,7 +128,8 @@ const generateInterview = async (req, res) => {
 
     const response = await axios.post(
       `${process.env.NLP_SERVICE_URL}/generate-questions`,
-      nlpPayload
+      nlpPayload,
+      { timeout: 60000 }
     );
 
     const generatedData = response.data;
