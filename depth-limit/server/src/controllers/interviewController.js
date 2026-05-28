@@ -1,20 +1,9 @@
 const InterviewSession = require("../models/InterviewSession");
 const Resume = require("../models/Resume");
-const pdfParse = require('pdf-parse');
-const fs = require('fs');
+
 const axios = require("axios");
 const path = require("path");
 
-
-// Extract text from PDF
-let resumeText = '';
-try {
-  const dataBuffer = fs.readFileSync(absoluteResumePath);
-  const pdfData = await pdfParse(dataBuffer);
-  resumeText = pdfData.text;
-} catch (err) {
-  console.error('PDF parse error:', err.message);
-}
 
 // =====================================
 // GENERATE UNIQUE INTERVIEW
@@ -23,7 +12,9 @@ try {
 const generateInterview = async (req, res) => {
 
   try {
-
+    const pdfParse = require('pdf-parse');
+    const fs = require('fs');
+    
     const {
       resumeId,
       jobTitle,
@@ -125,10 +116,18 @@ const generateInterview = async (req, res) => {
         .substring(0, 5000);
     }
 
-    
+    let resumeText = '';
+    try {
+      const pdfParse = require('pdf-parse');
+      const dataBuffer = fs.readFileSync(absoluteResumePath);
+      const pdfData = await pdfParse(dataBuffer);
+      resumeText = pdfData.text;
+    } catch (err) {
+      console.error('PDF parse error:', err.message);
+    }
+
     const nlpPayload = {
       file_path: absoluteResumePath,
-      resume_text: resumeText,  
       difficulty: nlpDifficulty,
       mode,
       previous_questions: previousQuestions
@@ -256,12 +255,6 @@ const generateInterview = async (req, res) => {
     console.error("Stack:", error.stack);
     
     res.status(500).json({
-      message: "Server Error"
-    });
-
-
-    res.status(500).json({
-
       message: "Server Error"
     });
   }
