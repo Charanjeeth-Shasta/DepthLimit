@@ -77,7 +77,8 @@ INTERVIEW_MODES = {
 
 # Request Model
 class ResumeRequest(BaseModel):
-    file_path: str
+    file_path: str = None
+    resume_text: str = None  
     difficulty: str = "medium"
     mode: str = "standard"
     previous_questions: list = []
@@ -234,9 +235,10 @@ def home():
 def generate_interview(request: ResumeRequest):
 
     # Extract Resume Text
-    text = extract_text_from_pdf(
-        request.file_path
-    )
+    if request.resume_text:
+        text = request.resume_text
+    else:
+        text = extract_text_from_pdf(request.file_path)
 
     # Extract Skills from Resume
     resume_skills = extract_skills(text)
