@@ -4,6 +4,9 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const rateLimit = require("express-rate-limit");
 const dotenv = require("dotenv");
+const fs = require('fs');
+const path = require('path');
+
 
 const connectDB = require("./config/db");
 
@@ -23,6 +26,12 @@ app.set('trust proxy', 1);
 
 // Security Middleware (MUST BE FIRST)
 app.use(helmet());
+
+// Create uploads directory if it doesn't exist
+const uploadsDir = path.join(__dirname, '../uploads/resumes');
+if (!fs.existsSync(uploadsDir)) {
+  fs.mkdirSync(uploadsDir, { recursive: true });
+}
 
 // CORS Configuration
 const corsOptions = {
