@@ -127,7 +127,7 @@ const generateInterview = async (req, res) => {
     }
 
     const response = await axios.post(
-      "http://127.0.0.1:8000/generate-questions",
+      `${process.env.NLP_SERVICE_URL}/generate-questions`,
       nlpPayload
     );
 
@@ -312,7 +312,7 @@ const evaluateAnswer = async (question, answer) => {
   try {
     // Call NLP service for deeper analysis if available
     const nlpResponse = await axios.post(
-      "http://127.0.0.1:8000/evaluate-answer",
+      `${process.env.NLP_SERVICE_URL}/evaluate-answer`,
       { question, answer },
       { timeout: 5000 }
     ).catch(() => null);
