@@ -238,9 +238,13 @@ const generateInterview = async (req, res) => {
 
   } catch (error) {
 
-    if (process.env.NODE_ENV !== "production") {
-      console.error("Interview Generation Error:", error);
-    }
+    console.error("Interview Generation Error:", error.message);
+    console.error("Stack:", error.stack);
+    
+    res.status(500).json({
+      message: "Server Error"
+    });
+
 
     res.status(500).json({
 
