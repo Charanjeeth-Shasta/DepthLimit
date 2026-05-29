@@ -74,12 +74,6 @@ export default function Login() {
             Sign in
           </button>
 
-          <div className="flex items-center gap-3 mb-4">
-            <div className="flex-1 h-px bg-bg-border" />
-            <span className="text-text-tertiary text-xs">or</span>
-            <div className="flex-1 h-px bg-bg-border" />
-          </div>
-
           <p className="text-center text-text-tertiary text-sm">
             Don't have an account?{' '}
             <button onClick={() => navigate('/signup')} className="text-accent-teal hover:text-accent-teal-bright transition-colors">Sign up</button>
