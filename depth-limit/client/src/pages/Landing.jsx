@@ -95,31 +95,6 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* Stats */}
-      <section className="max-w-6xl mx-auto px-6 py-16">
-        <div className="bg-bg-surface border border-bg-border rounded-2xl p-12">
-          <div className="grid grid-cols-3 gap-8 text-center">
-            {[
-              { value: '10,000+', label: 'Interviews Practiced' },
-              { value: '87%', label: 'Users Improved Score' },
-              { value: '2 Modes', label: 'Adaptive Strategies' },
-            ].map(({ value, label }) => (
-              <div key={label}>
-                <div className="font-mono font-bold text-4xl text-accent-teal mb-2">{value}</div>
-                <div className="text-text-secondary text-sm font-dm">{label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonial */}
-      <section className="max-w-6xl mx-auto px-6 py-16 text-center">
-        <blockquote className="text-2xl font-syne text-text-primary max-w-3xl mx-auto mb-4 leading-relaxed">
-          "DepthLimit found every gap I had. The Thread Puller mode is relentless — in the best way."
-        </blockquote>
-        <p className="text-text-tertiary font-dm">— Priya S., SDE-2 at Google</p>
-      </section>
 
       {/* CTA */}
       <section className="max-w-6xl mx-auto px-6 py-20">
