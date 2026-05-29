@@ -9,6 +9,7 @@ import DetailedReport from './pages/DetailedReport';
 import SummaryReport from './pages/SummaryReport';
 import Settings from './pages/Settings';
 import Profile from './pages/Profile';
+import Landing from './pages/Landing';  
 
 function ProtectedRoute({ children }) {
   const { user, loading } = useAuth();
@@ -19,7 +20,7 @@ function ProtectedRoute({ children }) {
 function AppRoutes() {
   return (
     <Routes>
-      <Route path="/" element={<Navigate to="/dashboard" replace />} />
+      <Route path="/" element={<Landing />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
