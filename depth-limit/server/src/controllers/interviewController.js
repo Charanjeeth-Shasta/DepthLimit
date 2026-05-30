@@ -116,15 +116,8 @@ const generateInterview = async (req, res) => {
         .substring(0, 5000);
     }
 
-    let resumeText = '';
-    try {
-      const pdfParse = require('pdf-parse');
-      const dataBuffer = fs.readFileSync(absoluteResumePath);
-      const pdfData = await pdfParse(dataBuffer);
-      resumeText = pdfData.text;
-    } catch (err) {
-      console.error('PDF parse error:', err.message);
-    }
+    const resumeText = resume.extractedText || '';
+    console.log('Resume text length:', resumeText.length);
 
     const nlpPayload = {
       resume_text: resumeText,

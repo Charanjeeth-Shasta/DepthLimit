@@ -15,19 +15,27 @@ const validateFilePath = (filePath) => {
 // Upload Resume
 const uploadResume = async (req, res) => {
   try {
-    // Check file exists
     if (!req.file) {
-      return res.status(400).json({
-        message: "No file uploaded",
-      });
+      return res.status(400).json({ message: "No file uploaded" });
     }
 
-    // Save resume data in MongoDB
+    // Extract text from PDF at upload time
+    let extractedText = '';
+    try {
+      const pdfParse = require('pdf-parse');
+      const dataBuffer = fs.readFileSync(req.file.path);
+      const pdfData = await pdfParse(dataBuffer);
+      extractedText = pdfData.text;
+    } catch (err) {
+      console.error('PDF text extraction error:', err.message);
+    }
+
     const resume = await Resume.create({
       user: req.user._id,
       originalName: req.file.originalname,
       fileName: req.file.filename,
       filePath: req.file.path,
+      extractedText,
     });
 
     res.status(201).json({
@@ -35,9 +43,7 @@ const uploadResume = async (req, res) => {
       resume,
     });
   } catch (error) {
-    res.status(500).json({
-      message: "Server Error"
-    });
+    res.status(500).json({ message: "Server Error" });
   }
 };
 

@@ -28,6 +28,12 @@ const resumeSchema = new mongoose.Schema(
       type: [String],
       default: [],
     },
+
+    extractedText: {
+      type: String,
+      default: '',
+    },
+    
   },
   {
     timestamps: true,
